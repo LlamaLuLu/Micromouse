@@ -3,12 +3,16 @@
 % Converts the structure s to a Simulink Bus Object with name BusName
 function struct2bus(s, BusName)
 
-% Obtain the fieldnames of the structure
-sfields = fieldnames(s);
+if ~isstruct(s) && ~isempty(s)
+  error('Input s must a structure (or empty)');
+end
 
-% Loop through the structure
-for i = 1:length(sfields)
-    
+if ~isempty(s)
+  % Obtain the fieldnames of the structure
+  sfields = fieldnames(s);
+
+  % Loop through the structure
+  for i = 1:length(sfields)
     % Create BusElement for each field
     elems(i) = Simulink.BusElement;
     elems(i).Name = sfields{i};
@@ -17,7 +21,9 @@ for i = 1:length(sfields)
     elems(i).SampleTime = -1;
     elems(i).Complexity = 'real';
     elems(i).SamplingMode = 'Sample based';
-    
+  end
+else
+  elems = [];
 end
 
 % Create main fields of Bus Object and generate Bus Object in the base

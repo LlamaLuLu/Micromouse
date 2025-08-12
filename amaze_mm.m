@@ -1,4 +1,4 @@
-function map = amaze_mm(m,n,branching,detail,shortest)
+function map = amaze_mm(m,n,branching,detail,shortest,mazeparm)
   % A maze generator for micromouse
   % map = amaze_mm(m,n,branching,detail,shortest)
   %
@@ -20,6 +20,13 @@ function map = amaze_mm(m,n,branching,detail,shortest)
   if nargin<3, branching = 'middle'; end
   if nargin<4, detail = false; end
   if nargin<5, shortest = true; end
+  if nargin<6
+    mazeparm = struct();
+    mazeparm.bdim = 0.20;  % maze block dimension (meters)
+    mazeparm.pydim = 0.02;  % pylon edge dimension (meters)
+    mazeparm.wtdim = 0.006;  % wall thickness dimension (meters)
+    mazeparm.res = 500;  % resolution (points per meter)
+  end
 
   if mod(m,2) || mod(n,2), error("Inputs m and n must be even"); end
   
@@ -157,10 +164,10 @@ function map = amaze_mm(m,n,branching,detail,shortest)
   end
 
   % Generate occupancy map
-  bdim = 0.180;  % maze block dimension (meters)
-  pydim = 0.02;  % pylon edge dimension (meters)
-  wtdim = 0.006;  % wall thickness dimension (meters)
-  res = 500;  % resolution (points per meter)
+  bdim = mazeparm.bdim;
+  pydim = mazeparm.pydim;
+  wtdim = mazeparm.wtdim;
+  res = mazeparm.res;
   map = genmap(bdim,pydim,wtdim,res);
 
 
