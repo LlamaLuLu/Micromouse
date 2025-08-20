@@ -67,7 +67,17 @@ mazeparm.bdim = 0.20;  % maze block dimension (meters)
 mazeparm.pydim = 0.02;  % pylon edge dimension (meters)
 mazeparm.wtdim = 0.006;  % wall thickness dimension (meters)
 mazeparm.res = 500;  % resolution (points per meter)
-map = amaze_mm(10,16,'middle',false,false,mazeparm);
+if 0
+  map = amaze_mm(8,12,'middle',false,false,mazeparm);
+else
+  % Trivial maze for development
+  ih = mazeparm.bdim*mazeparm.res;
+  iw = ih*10;
+  mim = zeros(ih,iw);
+  mim(1:3,:) = 1;  mim(end-2:end,:) = 1;  
+  mim(:,1:3) = 1;  mim(:,end-2:end) = 1;  
+  map = binaryOccupancyMap(mim,mazeparm.res);
+end
 
 % Store map quantities
 simstruct.mapim = uint8(occupancyMatrix(map));
