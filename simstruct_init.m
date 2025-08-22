@@ -67,7 +67,7 @@ mazeparm.bdim = 0.20;  % maze block dimension (meters)
 mazeparm.pydim = 0.02;  % pylon edge dimension (meters)
 mazeparm.wtdim = 0.006;  % wall thickness dimension (meters)
 mazeparm.res = 500;  % resolution (points per meter)
-if 0
+if 1
   map = amaze_mm(8,12,'middle',false,false,mazeparm);
 else
   % Trivial maze for development
