@@ -8,5 +8,7 @@ To program the micro-mouse see the README.md file in Jesse Arendse's 'MicroMouse
 
 ## Sensors not working
 All lights on. (Only 0 values are being read from the ToF sensors. -> Check your soldering as your I2C lines are not operating.
+
 Some lights flickering -> This could be normal sensor noise. Are you in a well lit environment - light sensors typically dont like sunlight.
+
 One sensor light always on. -> Check the soldering on that connection of the uSensor to the Sensor PCB.
