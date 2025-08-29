@@ -1,7 +1,8 @@
 # UCT Micro-mouse main repository
 
 ## First Time Hardware setup
-To program the micro-mouse see the README.md file in Jesse Arendse's 'MicroMouseTemplate' subrepo.
+To program the micro-mouse see the README.md file in Jesse Arendse's 'MicroMouseTemplate' repo
+[https://github.com/JesseJabezArendse/MicroMouseTemplate](https://github.com/JesseJabezArendse/MicroMouseTemplate).
 
 
 # FAQ
