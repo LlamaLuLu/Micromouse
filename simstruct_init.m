@@ -52,13 +52,13 @@ Rimu_x = axang2rotm([1 0 0 imu_thx]);
 Rimu_y = axang2rotm([0 1 0 imu_thy]);
 Rimu_z = axang2rotm([0 0 1 imu_thz]);
 simstruct.Rimu = Rimu_z*Rimu_y*Rimu_x;
-simstruct.timu = [0; 0; 0.03];  % sensor is carefully centered
+simstruct.timu = [0; 0; 0.0];  % sensor is carefully centered
 
 % TOF sensors
 simstruct.toflpose = [0.045 0.02 pi/2];  % [x y theta] in robot frame
 simstruct.toffpose = [0.055 0 0];
 simstruct.tofrpose = [0.045 -0.02 -pi/2];
-%simstruct.tofrange = [0.01 0.5];  % [min max]
+simstruct.tofposes = [simstruct.toflpose; simstruct.toffpose; simstruct.tofrpose];
 simstruct.tofspts = 0.01:0.005:0.5;
 
 % Generate maze map
@@ -67,23 +67,38 @@ mazeparm.bdim = 0.20;  % maze block dimension (meters)
 mazeparm.pydim = 0.02;  % pylon edge dimension (meters)
 mazeparm.wtdim = 0.006;  % wall thickness dimension (meters)
 mazeparm.res = 500;  % resolution (points per meter)
-if 1
-  map = amaze_mm(8,12,'middle',false,false,mazeparm);
-else
-  % Trivial maze for development
-  ih = mazeparm.bdim*mazeparm.res;
-  iw = ih*10;
-  mim = zeros(ih,iw);
-  mim(1:3,:) = 1;  mim(end-2:end,:) = 1;  
-  mim(:,1:3) = 1;  mim(:,end-2:end) = 1;  
-  map = binaryOccupancyMap(mim,mazeparm.res);
+
+% Select map
+currmap = 0;  % 0 (maze), 1 (track), 2 (field)
+switch currmap
+  case 0
+    map = amaze_mm(8,12,'middle',false,false,mazeparm);
+  case 1
+    ih = mazeparm.bdim*mazeparm.res;
+    iw = ih*10;
+    mim = zeros(ih,iw);
+    mim(1:3,:) = 1;  mim(end-2:end,:) = 1;  
+    mim(:,1:3) = 1;  mim(:,end-2:end) = 1;  
+    map = binaryOccupancyMap(mim,mazeparm.res);
+  case 2
+    mim = zeros(1500,2000);
+    mim(1:3,:) = 1;  mim(end-2:end,:) = 1;  
+    mim(:,1:3) = 1;  mim(:,end-2:end) = 1;  
+    map = binaryOccupancyMap(mim,mazeparm.res);
 end
 
 % Store map quantities
 simstruct.mapim = uint8(occupancyMatrix(map));
+simstruct.mapimfud = flipud(simstruct.mapim);
 simstruct.mapres = map.Resolution;  % pixels per meter
 mapdtp = bwdist(simstruct.mapim>0);  % distance transform in pixels
 simstruct.mapdt = flipud(mapdtp/map.Resolution);  % distance transform in meters
+
+% Odometry
+simstruct.wencr = 8;  % number of wheel markers per revolution
+
+% Kalman?
+
 
 % Needed for MRTL blocks?
 mapForSim = struct();
