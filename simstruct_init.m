@@ -69,7 +69,11 @@ mazeparm.wtdim = 0.006;  % wall thickness dimension (meters)
 mazeparm.res = 500;  % resolution (points per meter)
 
 % Select map
-currmap = 0;  % 0 (maze), 1 (track), 2 (field)
+if evalin('base','exist(''currmap'', ''var'')')
+  currmap = evalin('base','currmap');
+else
+  currmap = 0;  % 0 (maze), 1 (track), 2 (field), 3 (2m track)
+end
 switch currmap
   case 0
     map = amaze_mm(8,12,'middle',false,false,mazeparm);
@@ -85,6 +89,13 @@ switch currmap
     mim(1:3,:) = 1;  mim(end-2:end,:) = 1;  
     mim(:,1:3) = 1;  mim(:,end-2:end) = 1;  
     map = binaryOccupancyMap(mim,mazeparm.res);
+  case 3
+    mim = zeros(750,2000); 
+    mim(250:255,:) = 1;  mim(495:500,:) = 1;
+    mim(:,(150:155)) = 1;  mim(:,(150:155)+500) = 1;  mim(:,(150:155)+1000) = 1;  mim(:,(150:155)+1500) = 1; 
+    mim(256:494,156:end) = 0;  mim(300:450,:) = 0;
+    mim(:,1:149) = 0;
+    map = binaryOccupancyMap(mim,mazeparm.res);
 end
 
 % Store map quantities
@@ -97,9 +108,6 @@ simstruct.mapdt = flipud(mapdtp/map.Resolution);  % distance transform in meters
 % Odometry
 simstruct.wencr = 8;  % number of wheel markers per revolution
 
-% Kalman?
-
-
 % Needed for MRTL blocks?
 mapForSim = struct();
 mapForSim.lineFollowingMap = [];
@@ -107,6 +115,11 @@ mapForSim.obsMap = occupancyMatrix(map);
 mapForSim.scaleFactor = map.Resolution;
 mapForSim.simMap = map;
 assignin('base','mapForSim',mapForSim);
+
+% Local additions to structure
+if exist('simstructlocal_init.m','file')==2
+  simstruct = simstructlocal_init(simstruct);
+end
 
 if nargout==0
   assignin('base','simstruct',simstruct);
