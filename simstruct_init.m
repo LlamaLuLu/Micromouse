@@ -1,4 +1,4 @@
-function simstruct = simstruct_init()
+function simstruct = simstruct_init(currmap)
 %SIMSTRUCT_INIT  Initialise micro-mouse simulation structure
 %   simstruct = simstruct_init() creates a simulation structure for use in
 %   various micro-mouse Simulink blocks.  If simstruct_init() is called
@@ -11,6 +11,10 @@ function simstruct = simstruct_init()
 %   struct2bus is simple and only wants numeric data types, so make sure
 %   that the fields of simstruct are sufficiently simple that the
 %   conversion succeeds (e.g. no structures in simstruct fields). 
+
+if nargin<1
+  currmap = 0;
+end
 
 simstruct = struct();
 
@@ -35,7 +39,7 @@ simstruct.robot_img = robot_img;
 simstruct.robot_imgalpha = robot_imgalpha;
 robot_imgres = 147/robot_totalwidth;  % pixels per meter
 simstruct.robot_imgxyd = ((1:size(robot_img,1)) - ceil(size(robot_img,1)/2))/robot_imgres;
-simstruct.robot_rad = 0.120/2;  % approximate mouse radius in meters for collision detection
+simstruct.robot_rad = 0.116/2;  % approximate mouse radius in meters for collision detection
 
 % robotParams.ticksPerRot = 20;                    % Ticks per rotation for encoders
 % robotParams.width = 85;                          % Distance from left to right of robot (mm)
@@ -69,14 +73,9 @@ mazeparm.wtdim = 0.006;  % wall thickness dimension (meters)
 mazeparm.res = 500;  % resolution (points per meter)
 
 % Select map
-if evalin('base','exist(''currmap'', ''var'')')
-  currmap = evalin('base','currmap');
-else
-  currmap = 0;  % 0 (maze), 1 (track), 2 (field), 3 (2m track)
-end
 switch currmap
   case 0
-    map = amaze_mm(8,12,'middle',false,false,mazeparm);
+    map = amaze_mm(4,6,'middle',false,false,mazeparm);
   case 1
     ih = mazeparm.bdim*mazeparm.res;
     iw = ih*10;
