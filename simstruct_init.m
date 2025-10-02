@@ -63,7 +63,7 @@ simstruct.toflpose = [0.045 0.02 pi/2];  % [x y theta] in robot frame
 simstruct.toffpose = [0.055 0 0];
 simstruct.tofrpose = [0.045 -0.02 -pi/2];
 simstruct.tofposes = [simstruct.toflpose; simstruct.toffpose; simstruct.tofrpose];
-simstruct.tofspts = 0.01:0.005:0.5;
+simstruct.tofspts = 0.01:0.001:1.5;
 
 % Generate maze map
 mazeparm = struct();
