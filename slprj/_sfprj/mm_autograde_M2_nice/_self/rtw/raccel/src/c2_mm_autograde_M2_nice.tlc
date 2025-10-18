@@ -1,0 +1,146 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   18 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "doneDoubleBufferReInit"\
+      Description  "DoubleBufferInitCheck"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "bufL"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:447-451"\
+      Dimensions   [7]\
+    }\
+    ChartData {\
+      Name         "bufL_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:447-451"\
+    }\
+    ChartData {\
+      Name         "bufR"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:452-456"\
+      Dimensions   [7]\
+    }\
+    ChartData {\
+      Name         "bufR_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:452-456"\
+    }\
+    ChartData {\
+      Name         "idx"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:457-460"\
+    }\
+    ChartData {\
+      Name         "idx_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:457-460"\
+    }\
+    ChartData {\
+      Name         "countL_int"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:461-471"\
+    }\
+    ChartData {\
+      Name         "countL_int_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:461-471"\
+    }\
+    ChartData {\
+      Name         "countR_int"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:472-482"\
+    }\
+    ChartData {\
+      Name         "countR_int_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:472-482"\
+    }\
+    ChartData {\
+      Name         "debL"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:483-487"\
+    }\
+    ChartData {\
+      Name         "debL_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:483-487"\
+    }\
+    ChartData {\
+      Name         "debR"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:488-492"\
+    }\
+    ChartData {\
+      Name         "debR_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:488-492"\
+    }\
+    ChartData {\
+      Name         "init"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:493-497"\
+    }\
+    ChartData {\
+      Name         "init_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "mm_autograde_M2_nice:4913:4919:493-497"\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

@@ -1,0 +1,160 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   20 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "start_dist"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "start_dist"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "yaw_tol"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "yaw_tol"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "left_open"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "left_open"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "right_open"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "right_open"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "front_open"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "front_open"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "all_paths_visited"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "all_paths_visited"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "next_state"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "next_state"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "start_yaw"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "start_yaw"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "target_delta"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "target_delta"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "delta_yaw"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "delta_yaw"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "last_left_open"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "last_left_open"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "last_right_open"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "last_right_open"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "dist_travelled"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "dist_travelled"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "cond"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "cond"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "side_open_event"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "side_open_event"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "just_turned"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "just_turned"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_active_c4_mm_autograde_M2_nice"\
+      Description  "StateIsActive"\
+      SFName       "is_active_c4_mm_autograde_M2_nice"\
+      Path         "is_active_c4_mm_autograde_M2_nice"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_c4_mm_autograde_M2_nice"\
+      Description  "StateActiveChild"\
+      SFName       "is_c4_mm_autograde_M2_nice"\
+      Path         "is_c4_mm_autograde_M2_nice"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
